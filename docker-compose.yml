@@ -1,0 +1,30 @@
+services:
+  anime-score-web:
+    image: stellatezero/anime-score-web
+    container_name: anime-score-web
+    ports:
+      - "5101:5101"
+    environment:
+      - AS_API_URL=http://anime-score-api:5100
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - anime-score-network
+    depends_on:
+      - anime-score-api
+
+  anime-score-api:
+    image: stellatezero/anime-score-api
+    container_name: anime-score-api
+    ports:
+      - "5100:5100"
+    environment:
+      - AS_DB_URL=mysql://root:123456@host.docker.internal:3306/anime-score
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - anime-score-network
+
+networks:
+  anime-score-network:
+    driver: bridge
