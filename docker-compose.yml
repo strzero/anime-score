@@ -6,6 +6,7 @@ services:
       - "5101:5101"
     environment:
       - AS_API_URL=http://anime-score-api:5100
+      # - AS_API_URL=http://host.docker.internal:5100
     extra_hosts:
       - "host.docker.internal:host-gateway"
     networks:
@@ -19,7 +20,8 @@ services:
     ports:
       - "5100:5100"
     environment:
-      - AS_DB_URL=mysql://root:123456@host.docker.internal:3306/anime-score
+      - AS_DB_URL=mysql://root:123456@mysql:3306/anime-score
+      # - AS_DB_URL=mysql://root:123456@host.docker.internal:3306/anime-score
     extra_hosts:
       - "host.docker.internal:host-gateway"
     networks:
@@ -27,4 +29,5 @@ services:
 
 networks:
   anime-score-network:
+    name: anime-score-network
     driver: bridge
