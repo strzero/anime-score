@@ -20,8 +20,8 @@ services:
     ports:
       - "5100:5100"
     environment:
-      - AS_DB_URL=mysql://root:123456@mysql:3306/anime-score
-      # - AS_DB_URL=mysql://root:123456@host.docker.internal:3306/anime-score
+      #- AS_DB_URL=mysql://root:123456@mysql:3306/anime-score
+      - AS_DB_URL=mysql://root:so6666@host.docker.internal:13306/anime-score
     extra_hosts:
       - "host.docker.internal:host-gateway"
     networks:
